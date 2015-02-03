@@ -1,3 +1,4 @@
+
 >>> file = open("input.txt")
 >>> for dna in file:
 ...     print(dna)
@@ -59,3 +60,132 @@ processed sequence with length 38
 processed sequence with length 49
 processed sequence with length 34
 processed sequence with length 48
+
+
+
+
+
+
+
+
+
+
+>>> exon_locations = open("exons.txt")
+>>> for line in exon_locations:
+...     print(line)
+... 
+5,58
+
+72,133
+
+190,276
+
+340,398
+
+>>> exon_locations = open("exons.txt")
+>>> for line in exon_locations:
+...     positions = line.split(',')
+...     print(positions)
+... 
+['5', '58\n']
+['72', '133\n']
+['190', '276\n']
+['340', '398\n']
+>>> exon_locations = open("exons.txt")
+>>> for line in exon_locations:
+...     positions = line.split(',')
+...     start = positions[0]
+...     stop = positions[1]
+...     print("start is " + start + ", stop is " + stop)
+... 
+start is 5, stop is 58
+
+start is 72, stop is 133
+
+start is 190, stop is 276
+
+start is 340, stop is 398
+
+>>> genomic_dna = open("genomic_dna.txt").read()
+>>> exon_locations = open("exons.txt")
+>>> for line in exon_locations:
+...     positions = line.split(',')
+...     start = positions[0]
+...     stop = positions[1]
+...     exon = genomic_dna[start:stop]
+...     print("exon is: " + exon)
+... 
+Traceback (most recent call last):
+  File "<stdin>", line 5, in <module>
+TypeError: slice indices must be integers or None or have an __index__ method
+>>> start = int(position[0])
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+NameError: name 'position' is not defined
+>>> genomic_dna = open("genomic_dna.txt").read()
+>>> exon_locations = open("exons.txt")
+>>> for line in exon_locations:
+...     positions = line.split(',')
+...     start = int(positions[0])
+...     stop = int(positions[1])
+...     exon = genomic_dna[start:stop]
+... 
+>>> genomic_dna = open("genomic_dna.txt").read()
+>>> exon_locations = open("exons.txt")
+>>> for line in exon_locations:
+...     positions = line.split(',')
+...     start = int(positions[0])
+...     stop = int(positions[1])
+...     exon = genomic_dna[start:stop]
+...     print("exon is: " + exon)
+... 
+exon is: CGTACCGTCGACGATGCTACGATCGTCGATCGTAGTCGATCATCGATCGATCG
+exon is: CGATCGATCGATATCGATCGATATCATCGATGCATCGATCATCGATCGATCGATCGATCGA
+exon is: CGATCGATCGATCGTAGCTAGCTAGCTAGATCGATCATCATCGTAGCTAGCTCGACTAGCTACGTACGATCGATGCATCGATCGTA
+exon is: CGATCGATCGATCGATCGATCGATCGATCGATCGATCGATCGTAGCTAGCTACGATCG
+>>> coding_seq = exon1 + exon2 + exon3 + exon4
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+NameError: name 'exon1' is not defined
+>>> genomic_dna = open("genomic_dna.txt").read()
+>>> exon_locations = open("exons.txt")
+>>> coding_sequence = ""
+>>> for line in exon_locations:
+...     positions = line.split(',')
+...     start = int(positions[0])
+...     stop = int(positions[1])
+...     exon = genomic_dna[start:stop]
+...     coding_sequence = coding_sequence + exon
+...     print("coding sequence is : " + coding_sequence)
+... 
+coding sequence is : CGTACCGTCGACGATGCTACGATCGTCGATCGTAGTCGATCATCGATCGATCG
+coding sequence is : CGTACCGTCGACGATGCTACGATCGTCGATCGTAGTCGATCATCGATCGATCGCGATCGATCGATATCGATCGATATCATCGATGCATCGATCATCGATCGATCGATCGATCGA
+coding sequence is : CGTACCGTCGACGATGCTACGATCGTCGATCGTAGTCGATCATCGATCGATCGCGATCGATCGATATCGATCGATATCATCGATGCATCGATCATCGATCGATCGATCGATCGACGATCGATCGATCGTAGCTAGCTAGCTAGATCGATCATCATCGTAGCTAGCTCGACTAGCTACGTACGATCGATGCATCGATCGTA
+coding sequence is : CGTACCGTCGACGATGCTACGATCGTCGATCGTAGTCGATCATCGATCGATCGCGATCGATCGATATCGATCGATATCATCGATGCATCGATCATCGATCGATCGATCGATCGACGATCGATCGATCGTAGCTAGCTAGCTAGATCGATCATCATCGTAGCTAGCTCGACTAGCTACGTACGATCGATGCATCGATCGTACGATCGATCGATCGATCGATCGATCGATCGATCGATCGATCGTAGCTAGCTACGATCG
+>>> genomic_dna = open("genomic_dna.txt").read()
+>>> exon_locations = open("exons.txt")
+>>> coding_sequence = ""
+>>> for line in exon_locations:
+...     positions = line.split(',')
+...     start = int(positions[0])
+...     stop = int(positions[1])
+...     exon = genomic_dna[start:stop]
+...     coding_sequence = coding_sequence + exon
+... output = open("coding_sequence.txt", "w")
+  File "<stdin>", line 7
+    output = open("coding_sequence.txt", "w")
+         ^
+SyntaxError: invalid syntax
+>>> genomic_dna = open("genomic_dna.txt").read()
+>>> exon_locations = open("exons.txt")
+>>> coding_sequence = ""
+>>> for line in exon_locations:
+...     positions = line.split(',')
+...     start = int(positions[0])
+...     stop = int(positions[1])
+...     exon = genomic_dna[start:stop]
+...     coding_sequence = coding_sequence + exon
+... 
+>>> output = open("coding_sequence.txt", "w")
+>>> output.write(coding_sequence)
+>>> output.close()
